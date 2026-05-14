@@ -82,7 +82,7 @@ N = 取消，重新填写
 
 **Shell 版（优先）：**
 ```bash
-bash /Users/yuumix/Projects/codely-library/Skills/custom-package-creator/scripts/create-package.sh \
+bash /Users/yuumix/Projects/codely-library/skills/custom-package-creator/scripts/create-package.sh \
   -p "<项目路径>" \
   -o "<输出路径>" \
   -n "<正式包名>" \
@@ -98,7 +98,7 @@ bash /Users/yuumix/Projects/codely-library/Skills/custom-package-creator/scripts
 
 **Node 版（备选）：**
 ```bash
-node /Users/yuumix/Projects/codely-library/Skills/custom-package-creator/scripts/create-package.mjs \
+node /Users/yuumix/Projects/codely-library/skills/custom-package-creator/scripts/create-package.mjs \
   <同上参数>
 ```
 
