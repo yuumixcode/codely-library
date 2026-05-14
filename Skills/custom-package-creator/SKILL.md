@@ -26,7 +26,7 @@ description: 为 Unity / 团结引擎一键生成标准 UPM 包目录脚手架�
 | 3 | 描述 | 1-2 句功能说明 | `A lightweight inspector extension for Unity.` |
 | 4 | 作者 | 作者/组织名称 | `RunLab - Yuumix` |
 
-**自动派生字段（用户不需要输入）：**
+**自动派生字段（用户不需要输入，输出路径可覆盖）：**
 
 | 字段 | 派生规则 | 示例 |
 |------|----------|------|
@@ -34,7 +34,7 @@ description: 为 Unity / 团结引擎一键生成标准 UPM 包目录脚手架�
 | 版本号 | 固定 `0.1.0` | — |
 | Unity 最低版本 | 固定 `2022.3` | — |
 | 命名空间 | 取正式包名第 2、3 段，PascalCase + `.` 连接 | `RunLab.AesirInspector` |
-| 输出路径 | `Assets/<公司名(首字母大写)>/<显示包名>/` | `Assets/RunLab/Aesir Inspector/` |
+| 输出路径 | 默认 `Assets/<公司名(首字母大写)>/<显示包名>/`，**可在确认时覆盖**，支持绝对路径和相对路径，AI 自动识别 | `Assets/RunLab/Aesir Inspector/`（相对）或 `/Users/.../Assets/RunLab/Aesir Inspector/`（绝对） |
 
 > **请一次性提供以上 4 项信息：**
 >
@@ -66,12 +66,14 @@ description: 为 Unity / 团结引擎一键生成标准 UPM 包目录脚手架�
   描述：        A lightweight inspector extension for Unity.
   作者：        RunLab - Yuumix
   命名空间：    RunLab.AesirInspector（自动派生）
-  输出路径：    Assets/RunLab/Aesir Inspector/（自动派生）
+  输出路径：    Assets/RunLab/Aesir Inspector/（自动派生，可覆盖）
   项目路径：    /path/to/YourProject
 
 Y = 确认，执行创建
 N = 取消，重新填写
-直接指出某字段 → 仅修改该字段
+输出路径 = <自定义路径> → 覆盖输出路径，AI 自动分类：
+- 以 `/` 开头 → 绝对路径（直接传递给 `-o`）
+- 不以 `/` 开头 → 视为相对于 Unity 项目根目录的路径（拼接为 `Assets/...`）
 ```
 
 ## 执行创建
@@ -80,9 +82,9 @@ N = 取消，重新填写
 
 **Shell 版（优先）：**
 ```bash
-bash /path/to/skills/custom-package-creator/scripts/create-package.sh \
+bash /Users/yuumix/Projects/codely-library/Skills/custom-package-creator/scripts/create-package.sh \
   -p "<项目路径>" \
-  -o "Assets/<公司名>/<显示包名>" \
+  -o "<输出路径>" \
   -n "<正式包名>" \
   -d "<显示包名>" \
   -v "0.1.0" \
@@ -92,9 +94,11 @@ bash /path/to/skills/custom-package-creator/scripts/create-package.sh \
   -s "<命名空间>"
 ```
 
+- `-o` 输出路径：绝对路径（如 `/Users/.../Assets/RunLab/Aesir Inspector/`）或相对于 Unity 项目根目录的相对路径（如 `Assets/RunLab/Aesir Inspector/`），脚本自动兼容
+
 **Node 版（备选）：**
 ```bash
-node /path/to/skills/custom-package-creator/scripts/create-package.mjs \
+node /Users/yuumix/Projects/codely-library/Skills/custom-package-creator/scripts/create-package.mjs \
   <同上参数>
 ```
 
