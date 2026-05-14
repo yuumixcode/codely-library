@@ -30,7 +30,7 @@ description: 为 Unity / 团结引擎一键生成标准 UPM 包目录脚手架�
 
 | 字段 | 派生规则 | 示例 |
 |------|----------|------|
-| 显示包名 | 取正式包名最后一段，连字符→空格，单词首字母大写 | `com.runlab.aesir-inspector` → `Aesir Inspector` |
+| 显示包名 | 取正式包名**反向域名最后一段**（自动忽略 `com.` `net.` 等顶级域名），连字符→空格，单词首字母大写 | `com.runlab.aesir-inspector` → `Aesir Inspector` |
 | 版本号 | 固定 `0.1.0` | — |
 | Unity 最低版本 | 固定 `2022.3` | — |
 | 命名空间 | 取正式包名第 2、3 段，PascalCase + `.` 连接 | `RunLab.AesirInspector` |
